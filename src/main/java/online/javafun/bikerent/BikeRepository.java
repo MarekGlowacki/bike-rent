@@ -24,7 +24,8 @@ public class BikeRepository {
     }
 
     @Transactional
-    public void deleteById(Long id) {
-        findById(id).ifPresent(entityManager::remove);
+    public void delete(Bike bike) {
+        Bike mergedEntity = entityManager.merge(bike);
+        entityManager.remove(mergedEntity);
     }
 }
