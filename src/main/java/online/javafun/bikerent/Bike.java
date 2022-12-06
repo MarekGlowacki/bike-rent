@@ -3,6 +3,8 @@ package online.javafun.bikerent;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class Bike {
     @Id
@@ -12,6 +14,7 @@ public class Bike {
     private double hourPrice;
     private double dayPrice;
     private String borrowerId;
+    private LocalDateTime dateReturn;
 
     public Bike() {}
 
@@ -71,6 +74,14 @@ public class Bike {
         this.borrowerId = borrowerId;
     }
 
+    public LocalDateTime getDateReturn() {
+        return dateReturn;
+    }
+
+    public void setDateReturn(LocalDateTime dateReturn) {
+        this.dateReturn = dateReturn;
+    }
+
     @Override
     public String toString() {
         return "Bike{" +
@@ -80,6 +91,7 @@ public class Bike {
                 ", hourPrice=" + hourPrice +
                 ", dayPrice=" + dayPrice +
                 ", borrowerId='" + borrowerId + '\'' +
+                ", dateReturn=" + dateReturn +
                 '}';
     }
 }

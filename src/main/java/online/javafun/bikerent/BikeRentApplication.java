@@ -9,13 +9,12 @@ public class BikeRentApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(BikeRentApplication.class, args);
-        Bike bike1 = new Bike(1L, "Kross Esker 4.0, 29 cali męski", "KRS12345", 30, 100);
-        BikeRepository bikeRepository = context.getBean(BikeRepository.class);
-        bikeRepository.save(bike1);
+        NewBikeDto bike1 = new NewBikeDto(1L, "Kross Esker 4.0, 29 cali męski", "KRS12345", 30, 100);
+        BikeService bikeService = context.getBean(BikeService.class);
+        bikeService.add(bike1);
         System.out.println("Zapisano w bazie bike1");
-        bikeRepository.delete(bike1);
-
-
+        bike1.setModel("AAA123");
+        bikeService.add(bike1);
     }
 
 }

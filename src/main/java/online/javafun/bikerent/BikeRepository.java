@@ -15,7 +15,12 @@ public class BikeRepository {
     }
     @Transactional
     public void save(Bike bike) {
-        entityManager.persist(bike);
+        boolean bikeExist = entityManager.find(Bike.class, bike.getId()) != null;
+        if (bikeExist) {
+            entityManager.merge(bike);
+        } else {
+            entityManager.persist(bike);
+        }
     }
 
     public Optional<Bike> findById(Long id) {
@@ -24,8 +29,7 @@ public class BikeRepository {
     }
 
     @Transactional
-    public void delete(Bike bike) {
-        Bike mergedEntity = entityManager.merge(bike);
-        entityManager.remove(mergedEntity);
+    public void deleteById(Long id) {
+        findById(id).ifPresent(entityManager::remove);
     }
 }
