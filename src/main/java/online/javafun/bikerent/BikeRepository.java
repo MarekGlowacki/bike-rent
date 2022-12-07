@@ -15,12 +15,7 @@ public class BikeRepository {
     }
     @Transactional
     public void save(Bike bike) {
-        boolean bikeExist = entityManager.find(Bike.class, bike.getId()) != null;
-        if (bikeExist) {
-            entityManager.merge(bike);
-        } else {
-            entityManager.persist(bike);
-        }
+        entityManager.persist(bike);
     }
 
     public Optional<Bike> findById(Long id) {

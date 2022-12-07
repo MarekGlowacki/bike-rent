@@ -13,8 +13,9 @@ public class BikeRentApplication {
         BikeService bikeService = context.getBean(BikeService.class);
         bikeService.add(bike1);
         System.out.println("Zapisano w bazie bike1");
-        bike1.setModel("AAA123");
-        bikeService.add(bike1);
+        double rentingCost = bikeService.rentForHours(1L, 5, "Nr dowodu");
+        System.out.println("Koszt wypożyczenia to: " + rentingCost);
+        bikeService.returnBike(1L);
     }
 
 }

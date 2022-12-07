@@ -1,6 +1,7 @@
 package online.javafun.bikerent;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +12,7 @@ public class BikeService {
     public BikeService(BikeRepository bikeRepository) {
         this.bikeRepository = bikeRepository;
     }
-
+    @Transactional
     public void add(NewBikeDto newBike) {
         Bike bike = new Bike(newBike.getId(),
                 newBike.getModel(),
@@ -21,17 +22,19 @@ public class BikeService {
 
         bikeRepository.save(bike);
     }
-
+    @Transactional
     public void deleteById(Long bikeId) {
         bikeRepository.deleteById(bikeId);
     }
 
+    @Transactional
     public double rentForHours(Long bikeId, int hours, String borrowerId) {
         LocalDateTime timeReturn = LocalDateTime.now().plusHours(hours);
         Bike bike = updateBike(bikeId, borrowerId, timeReturn);
         return bike.getHourPrice() * hours;
     }
 
+    @Transactional
     public void returnBike(Long bikeId) {
         updateBike(bikeId, null, null);
     }
@@ -40,7 +43,6 @@ public class BikeService {
         Bike bike = bikeRepository.findById(bikeId).orElseThrow(BikeNotFoundException::new);
         bike.setDateReturn(timeReturn);
         bike.setBorrowerId(borrowerId);
-        bikeRepository.save(bike);
         return bike;
     }
 
