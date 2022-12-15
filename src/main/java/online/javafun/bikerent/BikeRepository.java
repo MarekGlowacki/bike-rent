@@ -7,8 +7,6 @@ import java.util.Optional;
 
 interface BikeRepository extends CrudRepository<Bike, Long> {
     Optional<Bike> findBySerialNumberIgnoreCase(String serialNumber);
-
-    int countAllByBorrowerIdIsNull();
-
-    List<Bike> findAllByBorrowerIdIsNotNullOrderByDayPrice();
+    int countAllByBorrowerIdIsNotNull();
+    List<Bike> findAllByBorrowerIdIsNullOrderByDayPrice();
 }

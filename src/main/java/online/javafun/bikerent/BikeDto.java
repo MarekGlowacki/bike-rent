@@ -1,14 +1,13 @@
 package online.javafun.bikerent;
 
-public class BikeDto {
-
-    private long id;
+class BikeDto {
+    private Long id;
     private String model;
     private String serialNumber;
     private double hourPrice;
     private double dayPrice;
 
-    public BikeDto(long id, String model, String serialNumber, double hourPrice, double dayPrice) {
+    public BikeDto(Long id, String model, String serialNumber, double hourPrice, double dayPrice) {
         this.id = id;
         this.model = model;
         this.serialNumber = serialNumber;
@@ -16,11 +15,11 @@ public class BikeDto {
         this.dayPrice = dayPrice;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
