@@ -1,6 +1,6 @@
 package online.javafun.bikerent;
 
-public class NewBikeDto {
+public class BikeDto {
 
     private long id;
     private String model;
@@ -8,7 +8,7 @@ public class NewBikeDto {
     private double hourPrice;
     private double dayPrice;
 
-    public NewBikeDto(long id, String model, String serialNumber, double hourPrice, double dayPrice) {
+    public BikeDto(long id, String model, String serialNumber, double hourPrice, double dayPrice) {
         this.id = id;
         this.model = model;
         this.serialNumber = serialNumber;
@@ -54,5 +54,16 @@ public class NewBikeDto {
 
     public void setDayPrice(double dayPrice) {
         this.dayPrice = dayPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "BikeDto{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", hourPrice=" + hourPrice +
+                ", dayPrice=" + dayPrice +
+                '}';
     }
 }

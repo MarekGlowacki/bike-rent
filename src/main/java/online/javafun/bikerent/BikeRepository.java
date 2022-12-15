@@ -2,4 +2,13 @@ package online.javafun.bikerent;
 
 import org.springframework.data.repository.CrudRepository;
 
-interface BikeRepository extends CrudRepository<Bike, Long> {}
+import java.util.List;
+import java.util.Optional;
+
+interface BikeRepository extends CrudRepository<Bike, Long> {
+    Optional<Bike> findBySerialNumberIgnoreCase(String serialNumber);
+
+    int countAllByBorrowerIdIsNull();
+
+    List<Bike> findAllByBorrowerIdIsNotNullOrderByDayPrice();
+}
